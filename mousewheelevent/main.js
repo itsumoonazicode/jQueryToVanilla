@@ -3,7 +3,15 @@ $(function () {
 	scrSpeed = 600;
 	scrEasing = 'easeOutCirc';
 
-	var mousewheelevent = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
+	var mousewheelevent = 'onwheel' in document ? 'wheel'
+											: 'onmousewheel' in document ? 'mousewheel'
+											: 'DOMMouseScroll';
+
+	document.addEventListener(mousewheelevent, function(e) {
+		e.preventDefault();
+	},{passive:false});
+
+
 	$(document).on(mousewheelevent, function (e) {
 		e.preventDefault();
 		var delta = e.originalEvent.deltaY ? -(e.originalEvent.deltaY) : e.originalEvent.wheelDelta ? e.originalEvent.wheelDelta : -(e.originalEvent.detail);
